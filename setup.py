@@ -115,10 +115,10 @@ long_description = io.open("README.rst", encoding="utf-8").read()
 version = __import__("allauth").__version__
 
 METADATA = dict(
-    name="django-allauth",
+    name="encrypted-django-allauth",
     version=version,
-    author="Raymond Penners",
-    author_email="raymond.penners@intenct.nl",
+    author="Rasmus Ravn Frost",
+    author_email="rasmus.ravn.frost@gmail.com",
     description="Integrated set of Django applications addressing"
     " authentication, registration, account management as well as"
     " 3rd party (social) account authentication.",
@@ -132,6 +132,7 @@ METADATA = dict(
         "requests-oauthlib >= 0.3.0",
         "requests",
         "pyjwt[crypto] >= 1.7",
+        "django-searchable-encrypted-fields >= 0.1"
     ],
     include_package_data=True,
     classifiers=[
