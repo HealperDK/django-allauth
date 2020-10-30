@@ -7,7 +7,9 @@ from django.db import models, transaction
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.translation import gettext_lazy as _
+from encrypted_fields.fields import EncryptedEmailField
 
+from .fields import SearchFieldAllowIExact
 from .. import app_settings as allauth_app_settings
 from . import app_settings, signals
 from .adapter import get_adapter
@@ -22,10 +24,13 @@ class EmailAddress(models.Model):
         verbose_name=_("user"),
         on_delete=models.CASCADE,
     )
-    email = models.EmailField(
-        unique=app_settings.UNIQUE_EMAIL,
-        max_length=app_settings.EMAIL_MAX_LENGTH,
-        verbose_name=_("e-mail address"),
+    _email = EncryptedEmailField(max_length=app_settings.EMAIL_MAX_LENGTH, verbose_name=_("e-mail address"))
+    email = SearchFieldAllowIExact(
+        hash_key=app_settings.ALLAUTH_ENCRYPTION_HASH_KEY,
+        encrypted_field_name="_email",
+        # unique=app_settings.UNIQUE_EMAIL,
+        unique=False,
+        verbose_name=_("e-mail address")
     )
     verified = models.BooleanField(verbose_name=_("verified"), default=False)
     primary = models.BooleanField(verbose_name=_("primary"), default=False)

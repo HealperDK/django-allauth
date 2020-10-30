@@ -181,3 +181,6 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
 ]
+
+ALLAUTH_ENCRYPTION_HASH_KEY = '659fc7d0793339b54c70a896aab89162d4d3b039a3e59bb2c79b65a2c3cb5ba8'
+FIELD_ENCRYPTION_KEYS = ["6d164a6fc9b5434265568bb4fc028bc05df8aa8cf07c5ab2350b386e5a9e7b3f"]

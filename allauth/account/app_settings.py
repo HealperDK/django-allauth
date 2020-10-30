@@ -47,6 +47,11 @@ class AppSettings(object):
         return getter(self.prefix + name, dflt)
 
     @property
+    def ALLAUTH_ENCRYPTION_HASH_KEY(self):
+        # return self._setting("ALLAUTH_ENCRYPTION_HASH_KEY", self._setting("SECRET_KEY", None))
+        return self._setting("ALLAUTH_ENCRYPTION_HASH_KEY", "659fc7d0793339b54c70a896aab89162d4d3b039a3e59bb2c79b65a2c3cb5ba8")
+
+    @property
     def DEFAULT_HTTP_PROTOCOL(self):
         return self._setting("DEFAULT_HTTP_PROTOCOL", "http").lower()
 
